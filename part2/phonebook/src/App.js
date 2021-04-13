@@ -9,11 +9,12 @@ import './index.css'
 
 
 const App = () => {
+
   const [ persons, setPersons ] = useState([]); 
   const [ newName, setNewName ] = useState('');
   const [ newNumber, setNumber] = useState('');
   const [ filter, setFilter]= useState('');
-  const [msg, setMsg] = useState([]);
+  const [ msg, setMsg] = useState([]);
   
   
   useEffect(() => {
@@ -85,6 +86,12 @@ const App = () => {
         phonebookServices.deletePerson(person.id)
         .then(p=>{
           setPersons(persons.filter(leftPerson=>leftPerson.id !== person.id))
+        }).catch(err =>{
+          setMsg([{ id:1, type: 'error' , message: `Infomation about ${person.name} is already removed from server` }])
+          setPersons(persons.filter(leftPerson=>leftPerson.id !== person.id))
+          console.log(err)
+          setTimeout(()=>{
+            setMsg(null)},5000)
         })
       }
   }
