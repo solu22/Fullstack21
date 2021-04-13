@@ -1,14 +1,13 @@
 import React from 'react'
 import EachPerson from './EachPerson'
 
-const Persons =({lists})=>{
+const Persons =({personLists, deletePerson})=>{
     return(
-        <>
         <ul>
-            {lists}
+            {personLists.map(person =>
+                <EachPerson key ={person.id} person ={person} deletePerson= {deletePerson} />)}
         </ul>
-      
-        </>
+        
     )
 }
 

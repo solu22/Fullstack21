@@ -10,4 +10,11 @@ const createPerson = person =>{
     return (axios.post(baseUrl, person).then(response => response.data))
 }
 
-export default {getPerson, createPerson};
+const deletePerson = id =>{
+    return (axios.delete(`${baseUrl}/${id}`).then (response=> response.data))
+}
+
+const updatePerson = person =>{
+    return (axios.put(`${baseUrl}/${person.id}`, person).then(response=> response.data))
+}
+export default {getPerson, createPerson, deletePerson, updatePerson};
